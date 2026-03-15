@@ -1,7 +1,7 @@
 
 
 <app-navbar></app-navbar>
-  
-<app-products></app-products>
+<app-add-product (productEmitter)="onProductAdd($event)"></app-add-product>
+<app-products [products]="parentProducts" ></app-products>
 
 

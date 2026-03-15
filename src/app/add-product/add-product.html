@@ -1,0 +1,54 @@
+<div class=" w-full">
+    <form class="bg-white p-6 rounded-lg shadow-md w-full  space-y-4">
+      <div>
+        <label for="name" class="block text-sm font-medium text-gray-700">
+          Name
+        </label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          [(ngModel)]="product.name"
+          class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter product name"
+        />
+      </div>
+
+      <div>
+        <label for="price" class="block text-sm font-medium text-gray-700">
+          Price
+        </label>
+        <input
+          type="number"
+          id="price"
+          name="price"
+          [(ngModel)]="product.price"
+          class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter price"
+        />
+      </div>
+
+      <div>
+        <label for="description" class="block text-sm font-medium text-gray-700">
+          Description
+        </label>
+        <textarea
+          id="description"
+          name="description"
+          rows="3"
+          [(ngModel)]="product.description"
+          class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter description"
+        ></textarea>
+      </div>
+
+      <button
+      (click)="onSubmit()"
+        type="submit"
+        class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
+      >
+        Submit
+      </button>
+
+    </form>
+  </div>
