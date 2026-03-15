@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-add-product',
@@ -10,18 +11,17 @@ import { FormsModule } from '@angular/forms';
 })
 export class AddProduct {
 
-
   product = {
     name: '',
     price: '',
     description: '',
     img: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9'
   };
-
-  @Output() productEmitter = new EventEmitter();
+  
+  productService = inject(ProductService);
 
   onSubmit(){
-    this.productEmitter.emit(this.product);
+    this.productService.products.push(this.product);    
     this.product = {
       name: '',
       price: '',

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import {FormsModule} from '@angular/forms'
+import { ProductService } from '../product.service';
 @Component({
   selector: 'app-products',
   imports: [CommonModule, FormsModule],
@@ -8,6 +9,30 @@ import {FormsModule} from '@angular/forms'
   styleUrl: './products.css',
 })
 export class Products {
-  @Input() products  : any = []
+  productService = inject(ProductService);
+
+  @Input() test : any = null;
+
+  constructor(){
+    console.log(this.test);
+  }
+
+  ngOnInit(){
+    console.log(this.test);
+  }
+
+  ngDoCheck(){
+    
+  }
+
+  ngOnChanges(){
+
+  }
+
+  ngOnDestroy(){
+
+  }
+  
+  products : any = this.productService.products;
   
 }

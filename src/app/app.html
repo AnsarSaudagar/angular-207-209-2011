@@ -1,7 +1,15 @@
-
-
 <app-navbar></app-navbar>
-<app-add-product (productEmitter)="onProductAdd($event)"></app-add-product>
-<app-products [products]="parentProducts" ></app-products>
-
-
+<div class="border rounded-lg">
+    <button (click)="isOpen = !isOpen"
+        class="w-full flex justify-between items-center p-4 bg-gray-100 hover:bg-gray-200">
+        <span class="font-semibold">Add Product</span>
+        <span>{{ isOpen ? '-' : '+' }}</span>
+    </button>
+    @if (isOpen) {
+    <div class="p-4 border-t">
+        <app-add-product >
+        </app-add-product>
+    </div>
+    }
+</div>
+<app-products [test]="29"></app-products>
