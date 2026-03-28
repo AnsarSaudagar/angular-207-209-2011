@@ -1,35 +1,25 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  products : any = [
-    {
-      name: 'Smart Watch',
-      description: 'Premium fitness smartwatch',
-      price: 3999,
-      img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30'
-    },
-    {
-      name: 'Headphones',
-      description: 'Noise cancelling audio',
-      price: 7499,
-      img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30'
-    },
-    {
-      name: 'Laptop',
-      description: 'Ultra performance laptop',
-      price: 89999,
-      img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30'
-    },
-    {
-      name: 'Smartphone',
-      description: 'Latest flagship device',
-      price: 49999,
-      img: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9'
-    },
+  products: any = [];
+  private API_URL = `https://69c7b5d963393440b3170810.mockapi.io/products`
 
+  http = inject(HttpClient);
 
-  ]; 
+  getProducts() {
+    return this.http.get(this.API_URL);
+  }
+
+  addProduct(productData: any) {
+    // observable
+    return this.http.post(this.API_URL, productData);
+  }
+
+  deleteProduct(id : string){
+    return this.http.delete(this.API_URL + '/' + id);
+  }
 }

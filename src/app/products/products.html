@@ -12,12 +12,12 @@
 
       @if(products.length > 0) {
         @for(product of products; track product.name){ 
-         <div  
-         
+          
+          <div  
           class="bg-white rounded-3xl shadow-lg overflow-hidden group hover:shadow-2xl transition duration-300">
-        <div class="overflow-hidden">
-          <img [src]="product.img"
-               class="w-full h-60 object-cover group-hover:scale-110 transition duration-500">
+          <div class="overflow-hidden">
+            <img [src]="product.img"
+            class="w-full h-60 object-cover group-hover:scale-110 transition duration-500">
         </div>
 
         <div class="p-5">
@@ -30,6 +30,9 @@
             >{{product.price}}</span>
             <button class="  bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
               Buy
+            </button>
+            <button (click)="onDeleteProduct(product.id)" class=" bg-red-400 text-white px-4 py-2 rounded-lg cursor-pointer transition">
+              Delete
             </button>
           </div>
         </div>

@@ -21,7 +21,8 @@ export class AddProduct {
   productService = inject(ProductService);
 
   onSubmit(){
-    this.productService.products.push(this.product);    
+    // this.productService.products.push(this.product);    
+    this.productService.addProduct(this.product).subscribe();
     this.product = {
       name: '',
       price: '',

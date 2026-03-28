@@ -14,11 +14,18 @@ export class Products {
   @Input() test : any = null;
 
   constructor(){
-    console.log(this.test);
+    // console.log(this.test);
+  }
+  products : any = [];
+  
+  ngOnInit(){
+    this.productService.getProducts().subscribe((data) => {
+      this.products = data;
+    });
   }
 
-  ngOnInit(){
-    console.log(this.test);
+  onDeleteProduct(productId: string){
+    this.productService.deleteProduct(productId).subscribe();
   }
 
   ngDoCheck(){
@@ -33,6 +40,5 @@ export class Products {
 
   }
   
-  products : any = this.productService.products;
   
 }
