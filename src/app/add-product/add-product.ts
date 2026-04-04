@@ -22,7 +22,12 @@ export class AddProduct {
 
   onSubmit(){
     // this.productService.products.push(this.product);    
-    this.productService.addProduct(this.product).subscribe();
+    this.productService.addProduct(this.product).subscribe({
+      complete: () => {
+        this.productService.productSubject.next(true);
+        
+      }
+    });
     this.product = {
       name: '',
       price: '',

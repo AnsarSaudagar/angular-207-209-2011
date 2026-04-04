@@ -13,19 +13,34 @@ export class Products {
 
   @Input() test : any = null;
 
-  constructor(){
-    // console.log(this.test);
-  }
+  
   products : any = [];
   
+  constructor(){
+    // console.log(this.test);
+    this.productService.productSubject.subscribe({
+      next: (data) => {
+        this.getAllProducts();
+      }
+    })
+  }
+
   ngOnInit(){
+      this.getAllProducts();
+  }
+
+  getAllProducts(){
     this.productService.getProducts().subscribe((data) => {
       this.products = data;
     });
   }
 
   onDeleteProduct(productId: string){
-    this.productService.deleteProduct(productId).subscribe();
+    this.productService.deleteProduct(productId).subscribe({
+       complete: () => {
+        this.getAllProducts();
+       }
+    });
   }
 
   ngDoCheck(){
