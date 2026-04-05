@@ -17,6 +17,9 @@ export const routes: Routes = [
         path: 'add-product', component: AddProduct 
     },
     {
+        path: 'edit-product/:id', component: AddProduct 
+    },
+    {
         path: 'view-product/:id', component: View
     },
     {

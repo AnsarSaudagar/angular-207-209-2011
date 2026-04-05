@@ -26,6 +26,10 @@ export class ProductService {
     return this.http.post(this.API_URL, productData);
   }
 
+  updateProduct(productData: any){
+    return this.http.put(this.API_URL+ '/' + productData.id, productData)
+  }
+
   deleteProduct(id : string){
     return this.http.delete(this.API_URL + '/' + id);
   }

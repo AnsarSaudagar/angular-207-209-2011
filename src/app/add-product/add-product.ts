@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ProductService } from '../product.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-product',
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class AddProduct {
 
   router = inject(Router);
-
+  route =inject(ActivatedRoute);
   product = {
     name: '',
     price: '',
@@ -23,15 +23,44 @@ export class AddProduct {
   
   productService = inject(ProductService);
 
-  onSubmit(){
-    // this.productService.products.push(this.product);    
-    this.productService.addProduct(this.product).subscribe({
-      complete: () => {
-        this.productService.productSubject.next(true);
-        this.router.navigate(['/']);
+  ngOnInit(){
+    this.route.paramMap.subscribe({
+      next: (urlData: any) => {
         
+        // isEdit = false -> add product
+        if(urlData.params.id){
+          this.isEdit = true; // -> edit product
+          this.productService.getProductById(urlData.params.id).subscribe({
+            next: (productData: any) => {
+              this.product = productData;
+            }
+          })
+        }
       }
-    });
+    })
+  }
+  
+  isEdit : any = false;
+
+  onSubmit(){   
+    if(this.isEdit){
+      this.productService.updateProduct(this.product).subscribe({
+        complete: () => {
+          this.productService.productSubject.next(true);
+          this.router.navigate(['/']);
+          
+        }
+      });
+    } else {
+      this.productService.addProduct(this.product).subscribe({
+        complete: () => {
+          this.productService.productSubject.next(true);
+          this.router.navigate(['/']);
+          
+        }
+      });
+    }
+    
     this.product = {
       name: '',
       price: '',

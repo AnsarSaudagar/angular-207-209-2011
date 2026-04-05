@@ -36,7 +36,7 @@
           </div>
           <div class="flex justify-between mt-2">
             <button (click)="onClickView(product.id)" class="w-1/2 cursor-pointer bg-green-950 text-white px-4 py-2 rounded-lg  transition">View</button>
-            <button class="bg-yellow-400 text-white px-4 py-2 rounded-lg  transition">Update</button>
+            <button (click)="onClickUpdate(product.id)" class="cursor-pointer bg-yellow-400 text-white px-4 py-2 rounded-lg  transition">Update</button>
           </div>
         </div>
       </div>

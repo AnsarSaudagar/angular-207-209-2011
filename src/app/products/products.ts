@@ -49,6 +49,10 @@ export class Products {
     this.router.navigate([`view-product/${productId}`]);
   }
 
+  onClickUpdate(productId : any){
+    this.router.navigate([`edit-product/${productId}`]);
+  }
+
   ngDoCheck(){
     
   }
