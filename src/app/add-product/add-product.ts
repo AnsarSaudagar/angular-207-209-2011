@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ProductService } from '../product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-product',
@@ -10,6 +11,8 @@ import { ProductService } from '../product.service';
   styleUrl: './add-product.css',
 })
 export class AddProduct {
+
+  router = inject(Router);
 
   product = {
     name: '',
@@ -25,6 +28,7 @@ export class AddProduct {
     this.productService.addProduct(this.product).subscribe({
       complete: () => {
         this.productService.productSubject.next(true);
+        this.router.navigate(['/']);
         
       }
     });

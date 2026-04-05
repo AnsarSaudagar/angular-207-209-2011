@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, Input } from '@angular/core';
 import {FormsModule} from '@angular/forms'
 import { ProductService } from '../product.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-products',
   imports: [CommonModule, FormsModule],
@@ -13,7 +14,6 @@ export class Products {
 
   @Input() test : any = null;
 
-  
   products : any = [];
   
   constructor(){
@@ -41,6 +41,12 @@ export class Products {
         this.getAllProducts();
        }
     });
+  }
+
+  router = inject(Router);
+
+  onClickView(productId: any){
+    this.router.navigate([`view-product/${productId}`]);
   }
 
   ngDoCheck(){
