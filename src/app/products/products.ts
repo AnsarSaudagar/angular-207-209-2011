@@ -46,7 +46,11 @@ export class Products {
   router = inject(Router);
 
   onClickView(productId: any){
-    this.router.navigate([`view-product/${productId}`]);
+    this.router.navigate([`view-product/${productId}`], {
+      queryParams: {
+        unavailable: productId === '2' ? true : false,
+      }
+    } );
   }
 
   onClickUpdate(productId : any){

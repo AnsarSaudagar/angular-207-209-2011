@@ -42,30 +42,39 @@ export class AddProduct {
   
   isEdit : any = false;
 
-  onSubmit(){   
-    if(this.isEdit){
-      this.productService.updateProduct(this.product).subscribe({
-        complete: () => {
-          this.productService.productSubject.next(true);
-          this.router.navigate(['/']);
-          
-        }
-      });
+  onSubmit(form : any){ 
+
+    if(form.valid){
+      if(this.isEdit){
+        this.productService.updateProduct(this.product).subscribe({
+          complete: () => {
+            this.productService.productSubject.next(true);
+            this.router.navigate(['/']);
+            
+          }
+        });
+      } else {
+        this.productService.addProduct(this.product).subscribe({
+          complete: () => {
+            this.productService.productSubject.next(true);
+            this.router.navigate(['/']);
+            
+          }
+        });
+      }
+
+      this.product = {
+        name: '',
+        price: '',
+        description: '',
+        img: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9'
+      };
+
     } else {
-      this.productService.addProduct(this.product).subscribe({
-        complete: () => {
-          this.productService.productSubject.next(true);
-          this.router.navigate(['/']);
-          
-        }
-      });
+      alert("Form is invalid, please fill all the required inputs")
     }
+        
     
-    this.product = {
-      name: '',
-      price: '',
-      description: '',
-      img: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9'
-    };
+    
   }
 }

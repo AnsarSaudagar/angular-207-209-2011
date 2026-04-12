@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,4 +9,9 @@ import { RouterModule } from '@angular/router';
 })
 export class Navbar {
 
+  private router = inject(Router);
+
+  onClickProfile(){
+    this.router.navigate(['profile']);
+  }
 }

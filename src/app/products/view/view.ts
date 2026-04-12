@@ -12,7 +12,16 @@ export class View {
   route = inject(ActivatedRoute)
   productService = inject(ProductService);
   productData : any = null;
+
+  unavailable = false;
   ngOnInit(){
+
+    this.route.queryParamMap.subscribe((data: any) => {
+      if(data.params.unavailable === true){
+        this.unavailable = true;
+      }
+    })
+
     this.route.paramMap.subscribe({
       next: (urlData: any) => {
         
